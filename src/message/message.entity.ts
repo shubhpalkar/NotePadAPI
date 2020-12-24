@@ -4,7 +4,7 @@ import { IsEmail, MinLength } from "class-validator";
 @Entity()
 export class message extends BaseEntity {
 @PrimaryGeneratedColumn()
-id: number
+id: number;
 
 @Column()
 message_id: number;
@@ -16,6 +16,6 @@ message_body: string;
 timestamp_utc: Date;
 
 @Column({default: 1})
-status: number
+status: number;
 
 }

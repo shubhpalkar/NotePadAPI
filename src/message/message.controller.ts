@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put } from '@nestjs/common';
+import { identity } from 'rxjs';
 import {MessageService} from '../message/message.service';
 import { message } from './message.entity';
 
@@ -21,4 +22,16 @@ export class MessageController {
         return this.service.writeMessage(msg);
     }
 
+    @Patch(':id')
+    async updateMessage(@Param ('id') id, @Body() msg: message): Promise<any>{
+        msg.id  = Number(id);
+        console.log ("updated value " +msg.id);
+        return this.service.updateMessage(msg);
+    }
+ 
+
+    @Delete('/:id')
+    deleleMessage(@Param('id') id): Promise<any>{
+        return this.service.getDelete(id);
+    }
 }

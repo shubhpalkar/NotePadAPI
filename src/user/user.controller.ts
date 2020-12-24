@@ -1,5 +1,5 @@
 import { Body, Controller, ParseIntPipe, Post } from '@nestjs/common';
-import { Get, Param } from '@nestjs/common/decorators';
+import { Delete, Get, Param, Put } from '@nestjs/common/decorators';
 import { get } from 'http';
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -23,5 +23,17 @@ export class UserController {
     findOne(@Param('id', ParseIntPipe) id) {
         return this.service.findOne(id);
     }
+
+    @Put(':id')
+    async update(@Param('id') id, @Body() userData: User): Promise<any> {
+        userData.id = Number(id);
+        console.log('Update #' + userData.id)
+        return this.service.update(userData);
+    }  
+
+    @Delete(':id')
+    async delete(@Param('id') id): Promise<any> {
+      return this.service.delete(id);
+    }  
 
 }
