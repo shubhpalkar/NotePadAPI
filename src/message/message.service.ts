@@ -25,7 +25,7 @@ export class MessageService {
     }
 
     async updateMessage (msg: message): Promise <UpdateResult>{
-        return await this.messageRepository.update(msg.id, message)
+        return this.messageRepository.update(msg.id, message)
     }
     
     async getDelete(id): Promise <DeleteResult>{

@@ -23,6 +23,9 @@ export class User extends BaseEntity{
     @Column()
     @MinLength(8, {message: "Please enter password with more than 8 characters"})
     cnfPsword: string
+
+    @Column()
+    filename: File;
 }
 
 export default User;

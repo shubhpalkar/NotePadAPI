@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { User } from './user.entity';
+import {getRepository} from "typeorm"; 
 
 @Injectable()
 export class UserService {
@@ -28,6 +29,17 @@ export class UserService {
         return await this.UserRepository.delete(id);
     }
 
+    async checkLoging(user: User): Promise<User>{
+        // const userlog = await getRepository(User). .createQueryBuilder("User") .where("User.userid == :userid" && "user.psword == :psword") .getOne();
+        const userlog = await getRepository(User)
+        .findOne({where: ("userid = :userid" && "psword == :psword")})   
+        
+        return userlog;
+        console.log (userlog)
+    }
+
+   
+    
 
     
 }
